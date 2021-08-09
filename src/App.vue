@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+    <router-view class="main"/>
+    <scroll-to-top v-if="isShowScrollToTop"/>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import "styles/main.css";
 </style>
+<script>
+  import Header from "./components/Header/Header";
+  import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+  import { mapActions } from 'vuex';
+
+  export default {
+    data: () => ({
+      isShowScrollToTop: false
+    }),
+    components: {
+      Header,
+      ScrollToTop
+    },
+    methods: {
+      ...mapActions(['loadFavorites']),
+      scrollBehavior() {
+        this.isShowScrollToTop = window.scrollY > 0;
+      }
+    },
+    created() {
+      this.loadFavorites();
+      window.addEventListener('scroll', this.scrollBehavior)
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.scrollBehavior)
+    }
+  }
+</script>

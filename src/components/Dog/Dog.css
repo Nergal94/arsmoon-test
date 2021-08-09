@@ -1,0 +1,65 @@
+.dog {
+  position: relative;
+  height: 370px;
+  width: 30%;
+  margin: 0px 15px 30px 15px;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.dog::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  background: linear-gradient(1.26deg, #000000 -5.53%, rgba(0, 0, 0, 0) 54.45%);
+}
+
+.dog img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.dog .dog__breed {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  font-size: 25px;
+  color: #fff;
+  font-weight: bold;
+  z-index: 10;
+  margin: 0px;
+}
+
+.dog .dog__like {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  z-index: 10;
+  cursor: pointer;
+  transition: .2s;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dog .dog__like:hover {
+ color: #fff;
+}
+
+@media screen and (max-width: 1024px) {
+  .dog {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dog {
+    width: 90%;
+  }
+}
+
